@@ -1,0 +1,16 @@
+{
+    "name": "@ijstech/eth-wallet-web3modal",
+    "version": "0.1.13",
+    "main": "lib/index.js",
+    "types": "types/index.d.ts",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "14.17",
+        "@walletconnect/web3-provider": "1.4.1",
+        "esbuild": "0.13.13",
+        "web3modal": "git+https://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:x-oauth-basic@github.com/ijstech/web3modal.git"
+    },
+    "scripts": {
+        "build": "node esbuild.bundle.js"
+    }
+}

@@ -1,0 +1,17 @@
+version: "3.1"
+services:
+  install:
+    image: node:14.17.0
+    volumes:
+      - .:/data
+    command: bash -c "cd /data && npm i" 
+  update:
+    image: node:14.17.0
+    volumes:
+      - .:/data
+    command: bash -c "cd /data && npm update"    
+  build:
+    image: node:14.17.0
+    volumes:
+      - .:/data
+    command: bash -c "cd /data && npm run build"
