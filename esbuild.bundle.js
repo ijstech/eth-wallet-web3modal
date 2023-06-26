@@ -1,4 +1,16 @@
 const path = require('path');
+const Fs = require('fs');
+
+async function readFile(fileName) {
+  return new Promise((resolve, reject) => {
+    Fs.readFile(fileName, 'utf8', function (err, data) {
+      if (err)
+        reject(err)
+      else
+        resolve(data)
+    })
+  })
+}
 
 async function build() {
   let result = await require('esbuild').build({
@@ -18,5 +30,12 @@ async function build() {
       },
     ],
   }).catch(() => process.exit(1));
+  let web3modal = await readFile('./dist/index.js');
+  let content = `
+define("@ijstech/eth-wallet-web3modal",(require, exports)=>{
+${web3modal}
+});
+`;
+    Fs.writeFileSync('./dist/index.js', content);
 };
 build();

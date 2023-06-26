@@ -1,3 +1,5 @@
+
+define("@ijstech/eth-wallet-web3modal",(require, exports)=>{
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -29116,3 +29118,5 @@ var import_ethereum_provider = __toModule(require_index_cjs8());
 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 */
+
+});
