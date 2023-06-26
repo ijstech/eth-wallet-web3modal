@@ -1,5 +1,5 @@
+const path = require('path');
 const Fs = require('fs');
-const { promises: fs } = require("fs")
 
 async function readFile(fileName) {
   return new Promise((resolve, reject) => {
@@ -13,22 +13,30 @@ async function readFile(fileName) {
 }
 
 async function build() {
-  if (!Fs.existsSync('./dist')) {
-    await fs.mkdir('./dist');
-  }
-
-  let web3modal = await readFile('./node_modules/@ijstech/web3modal/dist/index.js');
-  let walletconnect = await readFile('./node_modules/@walletconnect/web3-provider/dist/umd/index.min.js');
+  let result = await require('esbuild').build({
+    entryPoints: ['src/index.ts'],
+    outdir: 'dist',
+    bundle: true,
+    minify: true,
+    format: 'cjs',
+    plugins: [
+      {
+        name: 'alias',
+        setup(build) {
+          build.onResolve({ filter: /^tslib$/ }, args => {
+            return { path: path.resolve(__dirname, './node_modules/tslib/tslib.es6.js') };
+          });
+        },
+      },
+    ],
+  }).catch(() => process.exit(1));
+  let web3modal = await readFile('./dist/index.js');
   let content = `
 define("@ijstech/eth-wallet-web3modal",(require, exports)=>{
-define("Web3Modal",(require, exports)=>{
+let global = window;
 ${web3modal}
 });
-define("WalletConnectProvider",(require, exports)=>{
-${walletconnect}
-});
-});
 `;
-  Fs.writeFileSync('./dist/index.js', content);
+    Fs.writeFileSync('./dist/index.js', content);
 };
 build();
