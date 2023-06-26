@@ -11,8 +11,8 @@
         "typescript": "5.0.4",
         "@types/node": "14.17",
         "esbuild": "0.13.13",
-        "@walletconnect/ethereum-provider": "2.8.0",
-        "@walletconnect/modal": "2.4.6"
+        "@walletconnect/ethereum-provider": "^2.8.0",
+        "@walletconnect/modal": "^2.4.6"
     },
     "scripts": {
         "build": "node esbuild.bundle.js && tsc"

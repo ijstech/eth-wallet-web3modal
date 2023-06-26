@@ -17,7 +17,7 @@ async function build() {
     entryPoints: ['src/index.ts'],
     outdir: 'dist',
     bundle: true,
-    minify: false,
+    minify: true,
     format: 'cjs',
     plugins: [
       {
@@ -33,6 +33,7 @@ async function build() {
   let web3modal = await readFile('./dist/index.js');
   let content = `
 define("@ijstech/eth-wallet-web3modal",(require, exports)=>{
+let global = window;
 ${web3modal}
 });
 `;

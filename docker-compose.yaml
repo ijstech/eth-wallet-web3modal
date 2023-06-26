@@ -5,7 +5,7 @@ services:
     user: node
     volumes:
       - .:/data
-    command: bash -c "cd /data && npm i" 
+    command: bash -c "cd /data && rm -rf node_modules && rm package-lock.json && npm i" 
   update:
     image: node:18
     user: node
