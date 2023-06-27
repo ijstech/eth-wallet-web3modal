@@ -11,7 +11,7 @@
         "typescript": "5.0.4",
         "@types/node": "14.17",
         "esbuild": "0.13.13",
-        "@walletconnect/ethereum-provider": "^2.8.0",
+        "@walletconnect/ethereum-provider": "file:./repos/ethereum-provider",
         "@walletconnect/modal": "^2.4.6"
     },
     "scripts": {
